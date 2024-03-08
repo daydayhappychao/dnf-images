@@ -22,6 +22,7 @@ local online = {}
 local function onLogin(_user)
     local user = game.fac.user(_user)
     local uid = user:GetAccId()
+    logger.info(user:GetCharacName(), " 登录了")
 
     online[uid] = true
 end
@@ -62,3 +63,5 @@ local game_event = function(fnext, type, _party, param)
     return fnext()
 end
 dpx.hook(game.HookType.GameEvent, game_event)
+
+logger.info('dp2 start success')
