@@ -73,6 +73,7 @@ fi
 cp -rf /data/dp2/* /dp2/
 # 替换dp2 lib
 cp /dp2/libGeoIP.so.1 /lib/libGeoIP.so.1
+cp /dp2/frida/* /home/neople/game/
 echo "enable dp2"
 
 # 替换环境变量
