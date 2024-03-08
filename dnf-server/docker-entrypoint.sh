@@ -13,10 +13,12 @@ rm -rf /root/Config.ini
 rm -rf /root/privatekey.pem
 rm -rf /dp2/df_game_r.lua
 rm -rf lib/libGeoIP.so.1
+rm -rf /dp2
 
 # 复制待使用文件
 cp -r /home/template/neople /home/template/neople-tmp
 cp -r /home/template/root /home/template/root-tmp
+cp -r /home/template/dp2 /dp2
 
 # 检查/data
 chmod +x /home/template/init/init.sh && /home/template/init/init.sh
@@ -68,18 +70,10 @@ then
 fi
 
 # dp插件
-if $DP2;
-then
-  # dp2脚本
-  cp -rf /data/dp2/* /dp2/
-  # 替换dp2 lib
-  cp /dp2/libGeoIP.so.1 /lib/libGeoIP.so.1
-  echo "enable dp2"
-else
-  cp /lib/libGeoIP.so.bak /lib/libGeoIP.so.1
-  echo "disable dp2"
-fi
-echo
+cp -rf /data/dp2/* /dp2/
+# 替换dp2 lib
+cp /dp2/libGeoIP.so.1 /lib/libGeoIP.so.1
+echo "enable dp2"
 
 # 替换环境变量
 find /home/template/neople-tmp -type f -name "*.cfg" -print0 | xargs -0 sed -i "s/MYSQL_IP/$REP_MYSQL_IP/g"

@@ -50,12 +50,15 @@ else
   echo "Config.ini has already initialized, do nothing!"
 fi
 
-# 判断Config.ini文件是否初始化过
+# 判断 dp2 是否初始化过
 if [ ! -d "/data/dp2" ];then
   # 拷贝版本文件到持久化目录
   mkdir -p /data/dp2/
-  cp /home/template/init/df_game_r.lua /data/dp2/
-  echo "init df_game_r.lua success"
+  cp -r /dp2/frida /data/dp2/
+  cp -r /dp2/lua2 /data/dp2/
+  cp /dp2/df_game_r.js /data/dp2/
+  cp /dp2/df_game_r.lua /data/dp2/
+  echo "init dp2 success"
 else
-  echo "df_game_r.lua has already initialized, do nothing!"
+  echo "dp2 has already initialized, do nothing!"
 fi
