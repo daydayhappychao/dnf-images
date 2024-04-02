@@ -3754,7 +3754,7 @@ function enable_online_reward() {
         if (diff_time > 1 * 24 * 60) return;
 
         //奖励: 每分钟0.1点券
-        var REWARD_CASH_CERA_PER_MIN = 0.1;
+        var REWARD_CASH_CERA_PER_MIN = 1;
 
         //计算奖励
         var reward_cash_cera = Math.floor(diff_time * REWARD_CASH_CERA_PER_MIN);
