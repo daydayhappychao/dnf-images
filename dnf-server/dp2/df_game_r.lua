@@ -75,6 +75,7 @@ dpx.hook(game.HookType.UseItem2, stack_event)
 
 dpx.enable_creator()
 dpx.open_timegate()
+dpx.set_unlimit_towerofdespair()
 
 
 logger.info('dp2 start success')

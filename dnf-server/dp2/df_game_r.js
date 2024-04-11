@@ -2594,7 +2594,10 @@ function hook_user_inout_game_world() {
     },
     //原函数执行完毕, 这里可以得到并修改返回值retval
     onLeave: function (retval) {
-      api_GameWorld_SendNotiPacketMessage("天空一声巨响, 尊贵的 VIP 用户 \n 『 " + api_CUserCharacInfo_getCurCharacName(this.user) +" 』 闪亮登场",
+      api_GameWorld_SendNotiPacketMessage(
+        "天空一声巨响, 尊贵的 VIP 用户 \n 『 " +
+          api_CUserCharacInfo_getCurCharacName(this.user) +
+          " 』 闪亮登场",
         14
       );
 
@@ -2967,20 +2970,22 @@ function fix_TOD(skip_user_apc) {
   Interceptor.attach(ptr(0x08643872), {
     onEnter: function (args) {
       //今日已进入次数强制清零
+      console.log("welcome to TOD!");
       args[0].add(0x10).writeInt(0);
     },
     onLeave: function (retval) {},
   });
 
   //每10层挑战玩家APC 服务器内角色不足10个无法进入
-  if (skip_user_apc) {
+  if (true) {
     //跳过10/20/.../90层
     //TOD_UserState::getTodayEnterLayer
     Interceptor.attach(ptr(0x0864383e), {
       onEnter: function (args) {
         //绝望之塔当前层数
         var today_enter_layer = args[1].add(0x14).readShort();
-
+        console.log("0x0864383e -------");
+        console.log(today_enter_layer);
         if (
           today_enter_layer % 10 == 9 &&
           today_enter_layer > 0 &&
@@ -3008,8 +3013,9 @@ function fix_TOD(skip_user_apc) {
     new NativeCallback(
       function (party, dungeon, inven_item, a4) {
         //当前进入的地下城id
+        console.log("coming dungeon ----------------");
         var dungeon_index = CDungeon_get_index(dungeon);
-
+        console.log("coming dungeon:", dungeon_index);
         //根据地下城id判断是否为绝望之塔
         // if (dungeon_index >= 11008 && dungeon_index <= 11107) {
         //   //绝望之塔 不再扣除金币
@@ -3298,6 +3304,7 @@ function hook_history_log() {
 
       if (user.isNull()) return;
 
+      console.log("user: " + charac_no + " game_event: ", game_event);
       //道具减少:  Item-,1,10000113,63,1,3,63,0,0,0,0,0,0000000000000000000000000000,0,0,00000000000000000000
       if (game_event == "Item-") {
         var item_id = parseInt(group[15]); //本次操作道具id
@@ -10502,7 +10509,7 @@ function start() {
   //捕获玩家游戏事件
   hook_history_log();
   //修复绝望之塔
-  fix_TOD(false);
+  // fix_TOD(false);
   //在线奖励
   enable_online_reward();
   //修复时装镶嵌
@@ -10657,4 +10664,4 @@ rpc.exports = {
       "================================================ frida dispose1 ================================================================"
     );
   },
-};
+}; 
