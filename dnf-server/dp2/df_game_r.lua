@@ -73,5 +73,8 @@ local stack_event = function(user, item_id)
 end
 dpx.hook(game.HookType.UseItem2, stack_event)
 
+dpx.enable_creator()
+dpx.open_timegate()
+
 
 logger.info('dp2 start success')

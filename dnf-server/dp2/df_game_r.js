@@ -2602,13 +2602,13 @@ function hook_user_inout_game_world() {
       // send_offline_reward(this.user);
 
       //怪物攻城活动更新进度
-      if (villageAttackEventInfo.state != VILLAGEATTACK_STATE_END) {
-        //通知客户端打开活动UI
-        notify_villageattack_score(this.user);
+      // if (villageAttackEventInfo.state != VILLAGEATTACK_STATE_END) {
+      //   //通知客户端打开活动UI
+      //   notify_villageattack_score(this.user);
 
-        //公告通知客户端活动进度
-        event_villageattack_broadcast_diffcult();
-      }
+      //   //公告通知客户端活动进度
+      //   event_villageattack_broadcast_diffcult();
+      // }
     },
   });
 
@@ -3304,16 +3304,16 @@ function hook_history_log() {
         var item_cnt = parseInt(group[17]); //本次操作道具数量
         var reason = parseInt(group[18]); //本次操作原因
 
-        log(
-          "玩家[" +
-            charac_name +
-            "]道具减少, 原因:" +
-            reason +
-            "(道具id=" +
-            item_id +
-            ", 使用数量=" +
-            item_cnt
-        );
+        // log(
+        //   "玩家[" +
+        //     charac_name +
+        //     "]道具减少, 原因:" +
+        //     reason +
+        //     "(道具id=" +
+        //     item_id +
+        //     ", 使用数量=" +
+        //     item_cnt
+        // );
 
         if (5 == reason) {
           //丢弃道具
@@ -3336,16 +3336,16 @@ function hook_history_log() {
         var add_money = parseInt(group[15]); //本次获得金币数量
         var reason = parseInt(group[16]); //本次获得金币原因
 
-        log(
-          "玩家[" +
-            charac_name +
-            "]获取金币, 原因:" +
-            reason +
-            "(当前持有金币=" +
-            cur_money +
-            ", 本次获得金币数量=" +
-            add_money
-        );
+        // log(
+        //   "玩家[" +
+        //     charac_name +
+        //     "]获取金币, 原因:" +
+        //     reason +
+        //     "(当前持有金币=" +
+        //     cur_money +
+        //     ", 本次获得金币数量=" +
+        //     add_money
+        // );
 
         if (4 == reason) {
           //副本拾取
@@ -10490,19 +10490,19 @@ function start() {
   //每日首次登录处理
   hook_user_first_login();
   //处理GM信息
-  hook_gm_command();
+  // hook_gm_command();
   //魔法封印自动解封
   auto_unseal_random_option_equipment();
   //允许赛利亚房间的人互相可见
   //share_seria_room();
   //所有账号角色开启GM权限
-  hook_check_gm();
+  // hook_check_gm();
   //解除每日创建角色数量限制
   //disable_check_create_character_limit();
   //捕获玩家游戏事件
   hook_history_log();
   //修复绝望之塔
-  fix_TOD(true);
+  fix_TOD(false);
   //在线奖励
   enable_online_reward();
   //修复时装镶嵌
