@@ -3011,10 +3011,10 @@ function fix_TOD(skip_user_apc) {
         var dungeon_index = CDungeon_get_index(dungeon);
 
         //根据地下城id判断是否为绝望之塔
-        if (dungeon_index >= 11008 && dungeon_index <= 11107) {
-          //绝望之塔 不再扣除金币
-          return 1;
-        }
+        // if (dungeon_index >= 11008 && dungeon_index <= 11107) {
+        //   //绝望之塔 不再扣除金币
+        //   return 1;
+        // }
 
         //其他副本执行原始扣除道具逻辑
         return CParty_UseAncientDungeonItems(party, dungeon, inven_item, a4);
