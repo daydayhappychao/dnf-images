@@ -3327,7 +3327,7 @@ function hook_history_log() {
         } else if (3 == reason) {
           //使用道具
           //这里并未改变道具原始效果 原始效果成功执行后触发下面的代码
-          //use_item_handler(user,item_id)
+          use_item_handler(user, item_id);
         } else if (9 == reason) {
           //分解道具
           //disintegrate_item_handler(item_id)
@@ -6151,56 +6151,58 @@ function randomIncrease(user) {
 function use_item_handler(user, item_id) {
   // 任务清除券，  任务完成券 成就任务完成券 主线等
 
-  if ("10000542" == item_id) {
-    //所有的任务完成券
-    clear_all_quest_by_character_level(user);
-  }
+  // if ("10000542" == item_id) {
+  //   //所有的任务完成券
+  //   clear_all_quest_by_character_level(user);
+  // }
 
-  if ("10000543" == item_id) {
-    //所有的任务完成券
-    clear_all_quest_by_character_level(user);
-  }
+  // if ("10000543" == item_id) {
+  //   //所有的任务完成券
+  //   clear_all_quest_by_character_level(user);
+  // }
 
-  if ("690000119" === item_id) {
-    //以接任务完成券
-    equInherit(user);
-  }
-  if ("8071" == item_id) {
-    // 装备继承  完美继承强化，增幅 ，宝珠 ，锻造（还可以实现 +n的锻造券）
-    equInherit(user);
-  }
+  // if ("690000119" === item_id) {
+  //   //以接任务完成券
+  //   equInherit(user);
+  // }
+  // if ("8071" == item_id) {
+  //   // 装备继承  完美继承强化，增幅 ，宝珠 ，锻造（还可以实现 +n的锻造券）
+  //   equInherit(user);
+  // }
 
-  if ("8073" == item_id) {
-    // 装备跨界
-    crossover(user);
-  }
-  if ("20220912" == item_id) {
-    // 分解
-    decompose(user);
-  }
-  if ("1230" == item_id) {
-    // 魔法封印重置
-    qc(user);
-  }
-  if ("2749101" == item_id) {
-    // 称号合成
-    chhc(user);
-  }
-  if ("61000001" == item_id) {
-    // 每日任务完成
-    api_force_clear_quest_list(user, quest_list);
-  }
-  if ("8068" == item_id) {
+  // if ("8073" == item_id) {
+  //   // 装备跨界
+  //   crossover(user);
+  // }
+  // if ("20220912" == item_id) {
+  //   // 分解
+  //   decompose(user);
+  // }
+  // if ("1230" == item_id) {
+  //   // 魔法封印重置
+  //   qc(user);
+  // }
+  // if ("2749101" == item_id) {
+  //   // 称号合成
+  //   chhc(user);
+  // }
+  // if ("61000001" == item_id) {
+  //   // 每日任务完成
+  //   api_force_clear_quest_list(user, quest_list);
+  // }
+  if ("10000681" == item_id) {
     // 初阶异界入场重置
     resetResetDimensionInout(user, 0);
     resetResetDimensionInout(user, 1);
     resetResetDimensionInout(user, 2);
+    api_CUser_SendNotiPacketMessage(user, "初阶异界重置成功!", 0);
   }
-  if ("8069" == item_id) {
+  if ("10000682" == item_id) {
     // 高阶异界入场重置
     resetResetDimensionInout(user, 3);
     resetResetDimensionInout(user, 4);
     resetResetDimensionInout(user, 5);
+    api_CUser_SendNotiPacketMessage(user, "高阶异界重置成功!", 0);
   }
 }
 
@@ -10664,4 +10666,4 @@ rpc.exports = {
       "================================================ frida dispose1 ================================================================"
     );
   },
-}; 
+};
