@@ -3311,17 +3311,6 @@ function hook_history_log() {
         var item_cnt = parseInt(group[17]); //本次操作道具数量
         var reason = parseInt(group[18]); //本次操作原因
 
-        // log(
-        //   "玩家[" +
-        //     charac_name +
-        //     "]道具减少, 原因:" +
-        //     reason +
-        //     "(道具id=" +
-        //     item_id +
-        //     ", 使用数量=" +
-        //     item_cnt
-        // );
-
         if (5 == reason) {
           //丢弃道具
         } else if (3 == reason) {
@@ -3753,18 +3742,10 @@ function enable_online_reward() {
       if (login_tick > 0) {
         //在线时长(分钟)
         var diff_time = Math.floor((cur_time - login_tick) / 60);
-
-        //在线10min后开始计算
-        if (diff_time < 10) return;
-
-        //在线奖励最多发送1天
-        if (diff_time > 1 * 24 * 60) return;
-
-        //奖励: 每分钟0.1点券
-        var REWARD_CASH_CERA_PER_MIN = 1;
-
+        //在线4min后开始计算
+        if (diff_time < 4) return;
         //计算奖励
-        var reward_cash_cera = Math.floor(diff_time * REWARD_CASH_CERA_PER_MIN);
+        var reward_cash_cera = 20 * 5;
 
         //发点券
         api_recharge_cash_cera(user, reward_cash_cera);
@@ -3772,7 +3753,7 @@ function enable_online_reward() {
         //发消息通知客户端奖励已发送
         api_CUser_SendNotiPacketMessage(
           user,
-          "在线奖励已发送(当前阶段点券奖励:" + reward_cash_cera + ")",
+          "在线奖励已发送(点券 " + reward_cash_cera + ")",
           1
         );
       }
@@ -6190,14 +6171,14 @@ function use_item_handler(user, item_id) {
   //   // 每日任务完成
   //   api_force_clear_quest_list(user, quest_list);
   // }
-  if ("10000681" == item_id) {
+  if ("10000634" == item_id) {
     // 初阶异界入场重置
     resetResetDimensionInout(user, 0);
     resetResetDimensionInout(user, 1);
     resetResetDimensionInout(user, 2);
     api_CUser_SendNotiPacketMessage(user, "初阶异界重置成功!", 0);
   }
-  if ("10000682" == item_id) {
+  if ("10000635" == item_id) {
     // 高阶异界入场重置
     resetResetDimensionInout(user, 3);
     resetResetDimensionInout(user, 4);
